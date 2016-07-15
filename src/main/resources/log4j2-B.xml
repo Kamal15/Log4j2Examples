@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration  >
+
+<!--  APPENDERS -->
+
+<Appenders>
+
+    <RollingFile name="B" fileName="logs/B.txt" append="true" filePattern="logs/B.txt.%i">
+    	<PatternLayout pattern="%5p [%d{ISO8601}] : [%t] : %c{1}: %M(): %m%n"/>
+        <Policies>
+        	<SizeBasedTriggeringPolicy size="30 MB"/>
+        </Policies>
+        <DefaultRolloverStrategy max="100" fileIndex="min" />
+	</RollingFile>
+</Appenders>
+
+
+
+<!-- //log4j levels: TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+<Loggers>
+	<Logger name="logger-b" level="DEBUG" additivity="false">
+		<AppenderRef ref="B"/>
+	</Logger>
+
+	<Root level="TRACE">
+		<AppenderRef ref="B"/>
+	</Root>
+</Loggers>
+
+</Configuration>
