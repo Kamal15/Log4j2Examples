@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration  >
 
-<!--  APPENDERS -->
-
 <Appenders>
-
-    <RollingFile name="C" fileName="logs/C.txt" append="true" filePattern="logs/C.txt.%i">
+	<!-- When async enabled, disable the immediateFlush to see good performance results -->
+    <RollingFile name="C" fileName="logs/C.txt" append="true" filePattern="logs/C.txt.%i" immediateFlush="false">
     	<PatternLayout pattern="%5p [%d{ISO8601}] : [%t] : %c{1}: %M(): %m%n"/>
         <Policies>
         	<SizeBasedTriggeringPolicy size="30 MB"/>
@@ -14,9 +12,10 @@
 	</RollingFile>
 </Appenders>
 
-<!-- //log4j levels: TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+<!-- log4j levels: TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
 <Loggers>
-	<Logger name="logger-c" level="DEBUG" additivity="false">
+	<!-- includeLocation should be true for async loggers otherwise it won't print the Location information -->
+	<Logger name="logger-c" level="DEBUG" additivity="false" includeLocation="true">
 		<AppenderRef ref="C"/>
 	</Logger>
 
