@@ -10,6 +10,14 @@
         </Policies>
         <DefaultRolloverStrategy max="100" fileIndex="min" />
 	</RollingFile>
+
+	<RollingFile name="D" fileName="logs/D.txt" append="true" filePattern="logs/D.txt.%i" immediateFlush="false">
+		<PatternLayout pattern="%5p [%d{ISO8601}] : [%t] : %c{1}: %M(): %m%n"/>
+		<Policies>
+			<SizeBasedTriggeringPolicy size="30 MB"/>
+		</Policies>
+		<DefaultRolloverStrategy max="100" fileIndex="min" />
+	</RollingFile>
 </Appenders>
 
 <!-- log4j levels: TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
@@ -17,6 +25,11 @@
 	<!-- includeLocation should be true for async loggers otherwise it won't print the Location information -->
 	<Logger name="logger-c" level="DEBUG" additivity="false" includeLocation="true">
 		<AppenderRef ref="C"/>
+	</Logger>
+
+	<Logger name="logger-d" level="TRACE" additivity="false" includeLocation="true">
+		<AppenderRef ref="C"/>
+		<AppenderRef ref="D" level="FATAL"/>
 	</Logger>
 
 	<Root level="TRACE">
