@@ -12,7 +12,7 @@
 	</RollingFile>
 
 	<RollingFile name="D" fileName="logs/D.txt" append="true" filePattern="logs/D.txt.%i" immediateFlush="false">
-		<PatternLayout pattern="%5p [%d{ISO8601}] : [%t] : %c{1}: %M(): %m%n"/>
+		<PatternLayout pattern="%5p [%d{ISO8601}] : [%t] : %marker: %c{1}: %M(): %m%n"/>
 		<Policies>
 			<SizeBasedTriggeringPolicy size="30 MB"/>
 		</Policies>
